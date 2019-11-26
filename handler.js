@@ -12,7 +12,7 @@ const successfullResponse = {
   body: 'everything is alright'
 };
 
-module.exports.hello = async event => {
+module.exports.connectionHandler = (event, context, callback) => {
   console.log(event);
 
   if (event.requestContext.eventType === 'CONNECT') {
