@@ -73,5 +73,13 @@ resources:
         KeySchema:
         - AttributeName: "room"
           KeyType: "HASH"
+        - AttributeName: "user"
+          KeyType: "HASH"
+        - AttributeName: "message"
+          KeyType: "HASH"
+        - AttributeName: "profile-picture"
+          KeyType: "HASH"
+        - AttributeName: "dateTime"
+          KeyType: "RANGE"
         BillingMode: PAY_PER_REQUEST
         TableName: roomTable
