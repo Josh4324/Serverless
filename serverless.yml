@@ -49,37 +49,34 @@ resources:
         AttributeDefinitions:
         - AttributeName: "connectionId"
           AttributeType: "S"
-        - AttributeName: "user"
-          AttributeType: "S"
+        - AttributeName: 'room'
+          AttributeType: 'S'
         KeySchema:
-        - AttributeName: "connectionId"
+        - AttributeName: "room"
           KeyType: "HASH"
+        Projection:
+          ProjectionType: ALL
         BillingMode: PAY_PER_REQUEST
         TableName: chatIdTable
-    MessageTable:
+
+    ConversationsTable:
       Type: "AWS::DynamoDB::Table"
       Properties:
         AttributeDefinitions:
         - AttributeName: "room"
           AttributeType: "S"
-        - AttributeName: "user"
-          AttributeType: "S"
-        - AttributeName: "message"
-          AttributeType: "S"
-        - AttributeName: "profile-picture"
-          AttributeType: "S"
-        - AttributeName: "dateTime"
-          AttributeType: "S"
+        - AttributeName: 'timestamp'
+          AttributeType: 'N'
+        - AttributeName: 'message'
+          AttributeType: 'S'
         KeySchema:
         - AttributeName: "room"
           KeyType: "HASH"
-        - AttributeName: "user"
-          KeyType: "HASH"
-        - AttributeName: "message"
-          KeyType: "HASH"
-        - AttributeName: "profile-picture"
-          KeyType: "HASH"
-        - AttributeName: "dateTime"
-          KeyType: "RANGE"
+        - AttributeName: 'timestamp'
+          KeyType: 'RANGE'
+        - AttributeName: 'message'
+          KeyType: 'HASH'
+        Projection:
+          ProjectionType: ALL
         BillingMode: PAY_PER_REQUEST
-        TableName: roomTable
+        TableName: MessageTable
