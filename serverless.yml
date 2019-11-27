@@ -60,6 +60,8 @@ resources:
       Type: "AWS::DynamoDB::Table"
       Properties:
         AttributeDefinitions:
+        - AttributeName: "room"
+          AttributeType: "S"
         - AttributeName: "user"
           AttributeType: "S"
         - AttributeName: "message"
@@ -67,8 +69,6 @@ resources:
         - AttributeName: "profile-picture"
           AttributeType: "S"
         - AttributeName: "dateTime"
-          AttributeType: "S"
-        - AttributeName: "room"
           AttributeType: "S"
         KeySchema:
         - AttributeName: "room"
