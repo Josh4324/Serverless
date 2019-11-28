@@ -6,7 +6,6 @@ let dynamo = new AWS.DynamoDB.DocumentClient();
 require('aws-sdk/clients/apigatewaymanagementapi');
 
 const CHATCONNECTION_TABLE = 'chatIdTable';
-const CHATROOM_TABLE = 'roomTable';
 
 const successfullResponse = {
   statusCode: 200,
