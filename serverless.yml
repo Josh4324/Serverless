@@ -46,35 +46,26 @@ resources:
     ChatTable:
       Type: "AWS::DynamoDB::Table"
       Properties:
+        TableName: "chatIdTable"
         AttributeDefinitions:
         - AttributeName: "connectionId"
           AttributeType: "S"
-        - AttributeName: 'room'
-          AttributeType: 'S'
         KeySchema:
-        - AttributeName: "room"
+        - AttributeName: "connectionId"
           KeyType: "HASH"
-        BillingMode: PAY_PER_REQUEST
-        TableName: chatIdTable
-
-    ConversationsTable:
+        ProvisionedThroughput:
+          ReadCapacityUnits: 5
+          WriteCapacityUnits: 5
+    MessageTable:
       Type: "AWS::DynamoDB::Table"
       Properties:
+        TableName: "MessageTable"
         AttributeDefinitions:
-        - AttributeName: "room"
-          AttributeType: "S"
-        - AttributeName: 'timestamp'
-          AttributeType: 'N'
-        - AttributeName: 'message'
-          AttributeType: 'S'
+        - AttributeName: "messageid"
+          AttributeName: "S"
         KeySchema:
-        - AttributeName: "room"
+        - AttributeName: "messageid"
           KeyType: "HASH"
-        - AttributeName: 'timestamp'
-          KeyType: 'RANGE'
-        - AttributeName: 'message'
-          KeyType: 'HASH'
-        Projection:
-          ProjectionType: ALL
-        BillingMode: PAY_PER_REQUEST
-        TableName: MessageTable
+        ProvisionedThroughput: 
+          ReadCapacityUnits: 5
+          WriteCpacityUnits: 5
