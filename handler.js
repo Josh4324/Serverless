@@ -6,6 +6,7 @@ let dynamo = new AWS.DynamoDB.DocumentClient();
 require('aws-sdk/clients/apigatewaymanagementapi');
 
 const CHATCONNECTION_TABLE = 'chatIdTable';
+const MESSAGE_TABLE = 'MessageTable';
 
 const successfullResponse = {
   statusCode: 200,
@@ -84,7 +85,11 @@ const getConnectionIds = () => {
 
 const send = (event, connectionId) => {
   const body = JSON.parse(event.body);
-  const postData = body.data;  
+  console.log(body)
+  const postData = body.data;
+
+  storemessage(postData)
+
 
 
 
@@ -101,6 +106,8 @@ const send = (event, connectionId) => {
 
 
 
+
+
   return apigwManagementApi.postToConnection(params).promise();
 };
 
@@ -114,6 +121,17 @@ const addConnection = connectionId => {
 
   return dynamo.put(params).promise();
 };
+
+const storemessage = message => {
+  const params = {
+    TableName: MESSAGE_TABLE,
+    Item: {
+      message:message
+    }
+  }
+
+  return dynamo.put(params).promise();
+}
 
 
 const deleteConnection = connectionId => {

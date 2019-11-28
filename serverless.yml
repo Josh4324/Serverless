@@ -3,6 +3,9 @@ service: chatscrum
 app: chatscrum-app
 org: adesanyajoshua
 
+plugins:
+  - serverless-offline
+
 provider:
   name: aws
   runtime: nodejs12.x
