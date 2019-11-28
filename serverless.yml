@@ -3,6 +3,9 @@ service: chatscrum
 app: chatscrum-app
 org: adesanyajoshua
 
+plugins:
+  - serverless-offline
+
 provider:
   name: aws
   runtime: nodejs12.x
@@ -62,7 +65,7 @@ resources:
         TableName: "MessageTable"
         AttributeDefinitions:
         - AttributeName: "messageid"
-          AttributeName: "S"
+          AttributeType: "S"
         KeySchema:
         - AttributeName: "messageid"
           KeyType: "HASH"
