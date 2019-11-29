@@ -17,8 +17,10 @@ provider:
         - "dynamodb:GetItem"
         - "dynamodb:DeleteItem"
         - "dynamodb:Scan"
+        - "dynamodb:UpdateItem"
       Resource:
         - Fn::GetAtt: [ChatTable, Arn]
+        - Fn::GetAtt: [MessageTable, Arn]
     - Effect: Allow
       Action:
         - "execute-api:ManageConnections"
@@ -42,7 +44,12 @@ functions:
     handler: handler.sendMessageHandler
     events:
       - websocket:
-          route: sendMessage
+          route: message
+  initHandler:
+    handler: handler.initHandler
+    events:
+      - websocket:
+          route: init
 
 resources:
   Resources:

@@ -10,7 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "aws-sdk": "^2.579.0"
+    "aws-sdk": "^2.579.0",
+    "serverless-mysql": "^1.5.1"
   },
   "devDependencies": {
     "serverless-offline": "^5.12.0"
